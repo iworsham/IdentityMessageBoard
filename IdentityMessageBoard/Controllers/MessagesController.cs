@@ -1,5 +1,6 @@
 ﻿using IdentityMessageBoard.DataAccess;
 using IdentityMessageBoard.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 
@@ -23,7 +24,7 @@ namespace IdentityMessageBoard.Controllers
 
             return View(messages);
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult AllMessages()
         {
             var allMessages = new Dictionary<string, List<Message>>()
